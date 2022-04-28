@@ -24,34 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: Expo GitHub Action
-        # You may pin to the exact commit or the version.
-        # uses: expo/expo-github-action@f98a64c8874c4a163514273f34306f403e962350
-        uses: expo/expo-github-action@7.2.0
-        with:
-          # Expo CLI version to install
-          expo-version: latest # optional
-          # If Expo CLI should be cached to speed up installation
-          # expo-cache: # optional, default is true
-          # EAS CLI version to install
-          # eas-version: # optional
-          # If EAS CLI should be cached to speed up installation
-          # eas-cache: # optional, default is true
-          # The package manager used to install the CLIs
-          # packager: # optional, default is yarn
-          # If the action should patch the ENOSPC errors
-          # patch-watchers: # optional, default is true
-          # Your Expo token, for authentication. (use with secrets)
-          token: ${{ secrets.EXPO_TOKEN }}# optional
-          # A custom remote cache key to use for EAS CLI.
-          # eas-cache-key: # optional
-          # A custom remote cache key to use for Expo CLI.
-          # expo-cache-key: # optional
-          # Your Expo username, for authentication.
-          # username: # optional
-          # Your Expo password, for authentication. (use with secrets)
-          # password: # optional
           
       - name: yuque to readme
     # You may pin to the exact commit or the version.
@@ -79,5 +51,35 @@ jobs:
           git diff
           git config --global user.email "1600100809@qq.com"
           git config --global user.name "axue"
-          git commit -m "Updated README" -a || echo "No changes to commit"
-          expo publish --non-interactive   
+          #git commit -m "Updated README" -a || echo "No changes to commit"
+          #expo publish --non-interactive   
+          
+      - name: GitHub Commit & Push
+        # You may pin to the exact commit or the version.
+        # uses: actions-js/push@a52398fac807b0c1e5f1492c969b477c8560a0ba
+        uses: actions-js/push@v1.3
+        with:
+          # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.EXPO_TOKEN }}
+          # Email used to configure user.email in `git config`.
+          #author_email: # optional, default is github-actions[bot]@users.noreply.github.com
+          # Name used to configure user.name in `git config`.
+          #author_name: # optional, default is github-actions[bot]
+          # Email used to make a co-authored commit.
+          #coauthor_email: # optional
+          # Name used to make a co-authored commit.
+          #coauthor_name: # optional
+          # Commit message.
+          #message: # optional
+          # Repository name to push. Default or empty value represents current github repository (${GITHUB_REPOSITORY})
+          #repository: # optional, default is 
+          # Destination branch to push changes
+          #branch: # optional, default is main
+          # Allow empty commit
+          #empty: # optional
+          # Determines if force push is used
+          #force: # optional
+          # Determines if --tags is used
+          #tags: # optional
+          # Directory to change to before pushing.
+          directory: . # optional, default is .
