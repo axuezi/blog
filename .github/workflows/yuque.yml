@@ -80,4 +80,4 @@ jobs:
           git config --global user.email "1600100809@qq.com"
           git config --global user.name "axue"
           git commit -m "Updated README" -a || echo "No changes to commit"
-          git push     
+          expo publish --non-interactive   
